@@ -9,7 +9,7 @@
 Software for admin + basket of seeds for a contract farming organisation 
 Authentication based on Joomla!
 
-Logiciel de gestion pour des commandes de planton
+Logiciel de gestion pour des commandes de plantons
 pour une coopérative d'agriculture contractuelle de proximité (ACP) 
 
 Authentification basée sur Joomla!
