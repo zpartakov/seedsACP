@@ -1,10 +1,8 @@
-/** *
-
     @package seedsACP
     @version $Id: 1.0.0
     @author Fred Radeff fradeff@akademia.ch
     @copyright (c) 2014 Fred Radeff, akademia.ch
-    @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later * */
+    @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 
 Software for admin + basket of seeds for a contract farming organisation 
 Authentication based on Joomla!
@@ -13,6 +11,8 @@ Logiciel de gestion pour des commandes de plantons
 pour une coopérative d'agriculture contractuelle de proximité (ACP) 
 
 Authentification basée sur Joomla!
+
+![seedsACP snapshot](/seedsACP.png?raw=true "seedsACP")
 
 ######### HOWTO + infos #################
 This software is a fork based on
