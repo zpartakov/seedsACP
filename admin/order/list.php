@@ -19,7 +19,10 @@ if (isset($_GET['status']) && $_GET['status'] != '') {
 
 // for paging
 // how many rows to show per page
-$rowsPerPage = 10;
+$rowsPerPage = 500;
+
+
+/* old bug
 
 $sql = "SELECT ju.name AS realname, o.od_id, o.od_shipping_user, od_date, od_status, 
 SUM( pd_price * od_qty ) AS od_amount 
@@ -28,8 +31,17 @@ WHERE oi.pd_id = p.pd_id $sql2
 AND ju.id = o.od_shipping_user
 GROUP BY od_id
 ORDER BY od_id DESC";
+*/
 
-#echo nl2br($sql) ."<br>"; //tests
+$sql = "SELECT CONCAT(ju.PersNom, ' ', ju.PersPrenom)AS realname, o.od_id, o.od_shipping_user, od_date, od_status,
+SUM( pd_price * od_qty ) AS od_amount
+FROM tbl_customers ju, plantons_order o, plantons_order_item oi, plantons_product p
+WHERE oi.pd_id = p.pd_id $sql2
+AND ju.jos_user_id = o.od_shipping_user
+GROUP BY od_id
+ORDER BY od_id DESC";
+
+//echo nl2br($sql) ."<br>"; //tests
 		
 		
 $result     = dbQuery(getPagingQuery($sql, $rowsPerPage));

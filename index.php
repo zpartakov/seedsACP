@@ -1,5 +1,21 @@
 <?php
-#echo phpinfo(); exit;
+		include("../models/header.inc.php");
+echo "Les commmandes de plantons ne sont plus disponibles.";
+echo "<br><p><a href=\"/\">Retour aux Jardins de Cocagne</a>";
+		include("../models/footer.inc.php");
+exit;
+
+//exit; //not available
+
+/* fix bug radar
+http://www.cocagne.ch/plantons/index.php?cms=c5&uid=853
+*/
+
+if($_GET['uid']==853) {
+	header("Location: http://www.cocagne.ch/c5/macocagne");
+	exit;
+}
+
 require_once 'library/config.php';
 require_once 'library/category-functions.php';
 require_once 'library/product-functions.php';
@@ -19,6 +35,7 @@ if($_GET['uid']) {
 $uid=$_GET['uid'];
 $_SESSION['uid'] = $uid; // store session data: identifiant de l'utilisateur passé par joomla
 }
+
 if(preg_match("/utilisateur=/",$_SERVER['REQUEST_URI'])) {
 	if(strlen($_GET['utilisateur'])<3||!$_GET['utilisateur']) {
 		require_once 'include/header.php';
@@ -41,7 +58,9 @@ if(preg_match("/utilisateur=/",$_SERVER['REQUEST_URI'])) {
 	}
 }
 //on interroge la base des utilisateurs joomla
-$sql="SELECT * FROM jos_users WHERE id=".$_SESSION['uid'];
+//$sql="SELECT * FROM jos_users WHERE id=".$_SESSION['uid'];
+$sql="SELECT * FROM lesjardinsdecocagnech4.Users WHERE uID=".$_SESSION['uid']; //on interroge la base des utilisateurs c5
+
 //do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {
@@ -54,7 +73,9 @@ if(!$sql) {
 $idj=mysql_result($sql,0,'id');	
 #####################################
 //on interroge la base des clients qui commandent des produits
-$sql="SELECT * FROM tbl_customers WHERE jos_user_id=".$idj;
+//$sql="SELECT * FROM tbl_customers WHERE jos_user_id=".$idj;
+$sql="SELECT * FROM lesjardinsdecocagnech4.Users WHERE uID=".$_SESSION['uid']; //on interroge la base des utilisateurs c5
+
 #do and check sql
 $sql=mysql_query($sql);
 if(!$sql) {

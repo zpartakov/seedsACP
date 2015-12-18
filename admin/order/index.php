@@ -23,6 +23,11 @@ switch ($view) {
 		$content 	= 'modify.php';		
 		$pageTitle 	= 'Administration des commandes de plantons - Modifier les commandes';
 		break;
+		
+	case 'all' :
+		$content 	= 'all.php';		
+		$pageTitle 	= 'Administration des commandes de plantons - voir toutes les commandes';
+		break;	
 
 	default :
 		$content 	= 'list.php';		

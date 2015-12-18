@@ -1,4 +1,4 @@
-<?
+<?php
 require_once 'library/config.php';
 $pageTitle = $shopConfig['name'] .' - ' .SITE_NAME .' : Enregistrement';
 require_once 'include/header.php';
@@ -138,13 +138,15 @@ td {
 	
 <?
 /*extraction des donnees personnelles dans la table des utilisateurs joomla*/
+if($jid) {
 $juser="SELECT * FROM jos_users WHERE id=".$jid;
-#echo $juser;
+//echo $juser;
 $juser=mysql_query($juser);
 if(!$juser) {
 	echo "SQL error jid: " .mysql_error(); exit;
 }
 $txtEmail=mysql_result($juser,0,'email');
+}
 ?>	
 	<tr><td class="label">Prénom<sup>*</sup></label></td><td><input class="donnees" type="text" name="Prenom" value="<? echo $txtShippingFirstName; ?>"></td></tr>
 	<tr><td class="labelpair">Nom<sup>*</sup></td><td><input class="donnees" type="text" name="Nom" value="<? echo $txtShippingLastName; ?>"></td></tr>

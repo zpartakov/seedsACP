@@ -1,8 +1,5 @@
 <?php
 //after successful command, send an email
-
-echo "<!--- test : " .$_SESSION['shop_return_url'] ."-->";
-
 $emailcommande="plantons@cocagne.ch";
 
 require_once 'library/config.php';
@@ -170,6 +167,8 @@ white-space: pre; white-space: -moz-pre-wrap; white-space: -o-pre-wrap; white-sp
 	</table>";
 	
 if(strlen($remarques)>0) {
+	$remarques=stripslashes($remarques);
+	$remarques=htmlspecialchars($remarques);
 			$votrecommande.= "<p>Remarques: " .$remarques ."</p><br>";
 }
 //$votrecommande.= "<p>Si vous ne recevez pas d'autres messages, les articles seront livrés aux dates demandées.</p>";
@@ -218,21 +217,21 @@ echo $votrecommande;
 $message=$votrecommande; //make a copy for the admin email
 $votrecommande=$votrecommande ."</body></html>";
 //send the mail	
-$Sujet = "Commande n° " .$od_id ." du " .$date ;
+$Sujet = "Jardins de Cocagne: nouvelle commande de plantons # " .$od_id ." du " .$date ;
 #echo $Sujet;
 $From  = "From: " .$emailcommande ."\n";
 $From .= "MIME-version: 1.0\n";
 $From .= "Content-type: text/html; charset= utf-8\n";
 $mailuser=mail($email, $Sujet, $votrecommande, $From);
  if(!$mailuser) {
-		echo "Il y a eu un problème lors de l'envoi du mail à votre adresse, merci de prendre contact avec commandes@cocagne.ch"; exit;
+		echo "Il y a eu un problème lors de l'envoi du mail à votre adresse, merci de prendre contact avec plantons@cocagne.ch"; exit;
 	}
 #############
 //send email to the user end
 
 // send notification email to the admin
 if ($shopConfig['sendOrderEmail'] == 'y') {
-	$subject = "[Nouvelle commande] " . $_SESSION['orderId'];
+	$subject = "Jardins de Cocagne (admin): nouvelle commande de plantons #" . $_SESSION['orderId'];
 	$From  = "From: " .$email ."\n";
 $From .= "MIME-version: 1.0\n";
 $From .= "Content-type: text/html; charset= utf-8\n";
@@ -240,7 +239,7 @@ $From .= "Content-type: text/html; charset= utf-8\n";
 	#$email=$emailcommande; //tests
 	
 	$message .= "<br><hr><br>Nouvelle commande, voir les détails sur \n 
-	<a href=\"http://" . $_SERVER['HTTP_HOST'] . WEB_ROOT . 'admin/order/index.php?view=detail&oid=' . $_SESSION['orderId']."\">le module d'administration des livraisons</a>" 
+	<a href=\"http://" . $_SERVER['HTTP_HOST'] . WEB_ROOT . 'admin/order/index.php?view=detail&oid=' . $_SESSION['orderId']."\">le module d'administration des commandes de plantons</a>" 
     ;
 	$message=$message ."</body></html>";
 

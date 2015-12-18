@@ -135,12 +135,13 @@ if($jourdelasemaine==5||$jourdelasemaine==6||$jourdelasemaine==7) { //vendredi, 
  * */ 
    
  //calcul des jeudis options
- $jeudi="à mon point de distribution le jeudi 8 mai";
- $jeudi2="à mon point de distribution le jeudi 15 mai";
- $jeudi3="je passe au jardin";
- $jeudi4="au marché de Plainpalais";
- $jeudi5="au marché de Rive";
- $jeudi6="à Galiffe (8 mai)";
+ $jeudi="à mon point de distribution le jeudi 7 mai";
+ $jeudi2="à mon point de distribution le jeudi 14 mai";
+ $jeudi3="à mon point de distribution le jeudi 21 mai";
+ $jeudi4="je passe au jardin";
+ $jeudi5="au marché de Plainpalais";
+ $jeudi6="au marché de Rive";
+ $jeudi7="au marché à Galiffe (9 mai)";
  
  
  $jeudis="
@@ -255,7 +256,7 @@ echo $PDDTexte;
             </td>
         </tr>
         <tr> 
-            <td width="150" class="label"><? echo label_when2deliver; ?></td>
+            <td width="150" class="label"><? echo label_when2deliver; ?> (souhaitée)</td>
             <td class="content">
 		<?
 		//module de gestion des vacances radeff

@@ -1,8 +1,10 @@
 <html>
 <head>
-<title><?php echo $pageTitle; ?></title>
+<title><?php echo $pageTitle; ?>x</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="<?php echo WEB_ROOT;?>admin/include/admin.css" rel="stylesheet" type="text/css">
+
+
 <script language="JavaScript" type="text/javascript" src="<?php echo WEB_ROOT;?>admin/library/common.js"></script>
 <?php
 $n = count($script);
@@ -12,7 +14,7 @@ for ($i = 0; $i < $n; $i++) {
 	}
 }
 ?>
-</head>
+</head> 
 
 <body>
 <br>

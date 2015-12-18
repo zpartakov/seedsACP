@@ -15,7 +15,7 @@ if (isset($_POST['txtUserName'])) {
 ?>
 <html>
 <head>
-<title>Shop Admin - Login</title>
+<title>Plantons Admin - Login</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="include/admin.css" rel="stylesheet" type="text/css">
 </head>
@@ -31,7 +31,7 @@ if (isset($_POST['txtUserName'])) {
        <p>&nbsp;</p>
        <table width="350" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#336699" class="entryTable">
         <tr id="entryTableHeader"> 
-         <td>:: Admin Login ::</td>
+         <td>:: Plantons Login ::</td>
         </tr>
         <tr> 
          <td class="contentArea"> 

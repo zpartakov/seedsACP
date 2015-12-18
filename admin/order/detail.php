@@ -1,3 +1,5 @@
+<a href="javascript:window.print()" title="imprime facture"><img style="position: absolute; top: 5%; right: 20%;" src="../../images/print.jpg" alt="imprime facture"></a><br/>
+<div style="margin-top: -100px">
 <?php
 if (!defined('WEB_ROOT')) {
 	exit;
@@ -14,6 +16,7 @@ $sql = "SELECT pd_name, pd_price, od_qty
 	    FROM plantons_order_item oi, plantons_product p 
 		WHERE oi.pd_id = p.pd_id and oi.od_id = $orderId
 		ORDER BY od_id ASC";
+//echo nl2br($sql) ."<br>"; //tests
 
 		$result = dbQuery($sql);
 		while ($row = dbFetchAssoc($result)) {
@@ -79,8 +82,8 @@ $sql = "SELECT *
 			."' AND oi.od_id = o.od_id
 			 AND c.jos_user_id  = o.od_shipping_user 
 			 AND p.pd_id=oi.pd_id";
-			 
-			 #echo $sql; //tests
+//echo nl2br($sql) ."<br>"; //tests
+
 			 
 $result = dbQuery($sql);
 extract(dbFetchAssoc($result));
@@ -113,7 +116,7 @@ $pdd=mysql_result($pdd,0,'PDDTexte');
 <form action="" method="get" name="frmOrder" id="frmOrder">
     <table width="550" border="0"  align="center" cellpadding="5" cellspacing="1" class="detailTable">
         <tr> 
-            <td colspan="2" align="center" id="infoTableHeader">Détail commande</td>
+            <td colspan="2" align="center" id="infoTableHeader">Votre commande de plantons</td>
         </tr>
         <tr> 
             <td width="150" class="label">Commande numéro</td>
@@ -135,15 +138,27 @@ echo $date .", " .$hour;
 ?>
             </td>
         </tr>
-        <tr> 
+        
+        <tr>
+			<td width="150" class="label">Livraison</td>
+			<td class="content">
+			<?php
+			$datel=dbFetchAssoc($result);
+				echo $datel['date_livraison'];
+			?>
+			</td>
+        </tr>
+        
+        <tr class="printcache"> 
             <td width="150" class="label">Dernière mise à jour</td>
             <td class="content"><?php echo $od_last_update; ?></td>
         </tr>
-        <tr> 
+        <tr class="printcache"> 
             <td class="label">Statut</td>
             <td class="content"> <select name="cboOrderStatus" id="cboOrderStatus" class="box">
                     <?php echo $orderOption; ?> </select> <input name="btnModify" type="button" id="btnModify" value="Modifer le statut" class="box" onClick="modifyOrderStatus(<?php echo $orderId; ?>);"></td>
         </tr>
+        
     </table>
 </form>
 <p>&nbsp;</p>
@@ -151,11 +166,11 @@ echo $date .", " .$hour;
     <tr id="infoTableHeader"> 
         <td colspan="3">Produits</td>
     </tr>
-    <tr align="center" class="label"> 
-        <td>Produit</td>
-        <td>Prix unitaire</td>
-        <td>Nombre</td>
-        <td>Total</td>
+    <tr align="center"> 
+        <th>Produit</th>
+        <th>Prix unitaire</th>
+        <th>Nombre</th>
+        <th>Total</th>
     </tr>
     <?php
     
@@ -173,31 +188,34 @@ echo $produits;
     <tr id="infoTableHeader"> 
         <td colspan="2">Client</td>
     </tr>
+	<tr>                            
+		<td colspan="2" align="center" id="infoTableHeader">Vos coordonnées</td>
+	</tr>
     <tr> 
-        <td width="150" class="label">Prénom</td>
+        <td width="150">Prénom</td>
         <td class="content"><?php echo utf8_encode($PersPrenom); ?> </td>
     </tr>
     <tr> 
-        <td width="150" class="label">Nom</td>
+        <td width="150">Nom</td>
         <td class="content"><?php echo utf8_encode($PersNom); ?> </td>
     </tr>
     <tr> 
-        <td width="150" class="label">Adresse</td>
+        <td width="150">Adresse</td>
         <td class="content"><?php echo utf8_encode($adresse); ?> </td>
     </tr>
    
     <tr> 
-        <td width="150" class="label">Téléphone</td>
+        <td width="150">Téléphone</td>
         <td class="content"><?php echo $tel; ?> </td>
     </tr>
     
         <tr> 
-        <td width="150" class="label">Email</td>
+        <td width="150">Email</td>
         <td class="content"><?php echo "<a href=\"mailto:".$PersAdresseEmail ."\">" .$PersAdresseEmail ."</a>" 	; ?> </td>
     </tr>
 
     <tr> 
-        <td width="150" class="label">Livraison</td>
+        <td width="150">Livraison</td>
         <td class="content"><?php echo $pdd; ?> </td>
     </tr>
 </table>
@@ -215,5 +233,6 @@ echo $produits;
 <p align="center"> 
     <input name="btnBack" type="button" id="btnBack" value="Retour" class="box" onClick="window.history.back();">
 </p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p style="position: relative; top: -50px; left: 380px;" ><a href="javascript:window.print()" title="imprime facture"><img src="../../images/print.jpg" alt="imprime facture"></a>
+</p>
+</div>

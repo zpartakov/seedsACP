@@ -324,3 +324,7 @@ legend
 /*display: none;*/
 visibility: hidden;
 }
+
+.printonly {
+display: none;
+}
